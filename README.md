@@ -4,6 +4,4 @@
 $ nix flake init --template github:benraz123/ltx#NAME
 ```
 
-## Slides
-
-Beamer.
+For documentation please see <benraz.dev/ltx>
