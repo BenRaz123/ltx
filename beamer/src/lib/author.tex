@@ -5,14 +5,14 @@
 
 % \MkAuthor<email@provider.com>[0000-0000-0000-0000]{First Last}
 \NewDocumentCommand\MkAuthor{d<> o m}{
-	#3
-	\IfNoValueF{#2}{
-		\,\small{\orcidlink{#2}}\footnote{\tiny{ORCID\ #2}}
-	}
-	\IfNoValueF{#1}{
-		\small{,\,\href{mailto:#1}{\texttt{<#1>}}}
-	}
-	\\[0.5em]
+  #3
+  \IfNoValueF{#2}{
+    \,\small{\orcidlink{#2}}\footnote{\tiny{ORCID\ #2}}
+  }
+  \IfNoValueF{#1}{
+    \small{,\,\href{mailto:#1}{\texttt{<#1>}}}
+  }
+  \\[0.5em]
 }
 
 \ExplSyntaxOff
