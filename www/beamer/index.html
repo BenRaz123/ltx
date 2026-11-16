@@ -1,0 +1,103 @@
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>beamer template</title>
+  </head>
+  <body>
+    <a href="..">&lt; Back</a>
+<header>
+  <h1>beamer <a class=btn href="https://github.com/benraz123/ltx/blob/main/beamer">source</a> <a class=btn href="./example.pdf">example</a></h1>
+  <p class="tagline">
+    Simple slideshow with beamer Singapore theme
+  </p>
+</header>
+<h2>Setup</h2>
+<pre>
+  nix flake init -t github:BenRaz123/ltx#beamer
+</pre>
+<h2>Nix Flake Show</h2>
+<pre>
+<pre>git+file:///home/ben/work/ltx?dir=beamer
+├───apps
+│   ├───aarch64-darwin
+│   │   └───watch: app: no description
+│   ├───aarch64-linux
+│   │   └───watch: app: no description
+│   └───x86_64-linux
+│       └───watch: app: no description
+├───devShells
+│   ├───aarch64-darwin
+│   │   └───default: development environment 'nix-shell'
+│   ├───aarch64-linux
+│   │   └───default: development environment 'nix-shell'
+│   └───x86_64-linux
+│       └───default: development environment 'nix-shell'
+└───packages
+    ├───aarch64-darwin
+    │   └───default: package 'build-slides'
+    ├───aarch64-linux
+    │   └───default: package 'build-slides'
+    └───x86_64-linux
+        └───default: package 'build-slides'</pre>
+<script>
+  const INFO_JSON = {"apps":{"aarch64-darwin":{"watch":{"type":"app"}},"aarch64-linux":{"watch":{"type":"app"}},"x86_64-linux":{"watch":{"type":"app"}}},"devShells":{"aarch64-darwin":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}}},"packages":{"aarch64-darwin":{"default":{"description":"","name":"build-slides","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}}}};
+</script>
+
+    <style>
+      :root {
+        --bg: white;
+        --fg: black;
+        --dim: gray;
+        --link: blue;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --fg: white;
+          --dim: #999;
+          --link: #abf;
+        }
+      }
+      *{
+        background-color: var(--bg);
+        color: var(--fg);
+      }
+      a {
+        color: var(--link);
+      }
+      a.btn {
+        font-size: smaller;
+        font-weight: normal;
+        color: var(--fg);
+      }
+
+      a.btn::before {
+        content: "[";
+        color: var(--dim);
+      }
+
+      a.btn::after {
+        content: "]";
+        color: var(--dim);
+      }
+
+      smaller {
+        font-size:smaller
+      } 
+      *{
+        font-family:sans-serif
+      }
+      pre,code {
+        font-family: monospace
+      }
+      p.tagline {
+        color: var(--dim);
+        font-weight: bold;
+        font-style: italic;
+      }
+    </style>
+  </body>
+</html> 
+

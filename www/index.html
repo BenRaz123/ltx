@@ -1,0 +1,70 @@
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>latex templates</title>
+  </head>
+  <body>
+    <h1>Latex Templates</h1>
+<ul>
+<li><a href="beamer">beamer</a> <a class=btn href="beamer/example.pdf">PDF</a></li>
+
+</ul>
+
+    <style>
+      :root {
+        --bg: white;
+        --fg: black;
+        --dim: gray;
+        --link: blue;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --fg: white;
+          --dim: #999;
+          --link: #abf;
+        }
+      }
+      *{
+        background-color: var(--bg);
+        color: var(--fg);
+      }
+      a {
+        color: var(--link);
+      }
+      a.btn {
+        font-size: smaller;
+        font-weight: normal;
+        color: var(--fg);
+      }
+
+      a.btn::before {
+        content: "[";
+        color: var(--dim);
+      }
+
+      a.btn::after {
+        content: "]";
+        color: var(--dim);
+      }
+
+      smaller {
+        font-size:smaller
+      } 
+      *{
+        font-family:sans-serif
+      }
+      pre,code {
+        font-family: monospace
+      }
+      p.tagline {
+        color: var(--dim);
+        font-weight: bold;
+        font-style: italic;
+      }
+    </style>
+  </body>
+</html> 
+
