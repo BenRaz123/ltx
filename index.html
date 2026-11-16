@@ -8,11 +8,48 @@
   <body>
     <h1>Latex Templates</h1>
 <ul>
-<li><a href="beamer">beamer</a> <smaller><a href="beamer/example.pdf">[PDF]</a></smaller></li>
+<li><a href="beamer">beamer</a> <a class=btn href="beamer/example.pdf">PDF</a></li>
 
 </ul>
 
     <style>
+      :root {
+        --bg: white;
+        --fg: black;
+        --dim: gray;
+        --link: blue;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --fg: white;
+          --dim: #999;
+          --link: #abf;
+        }
+      }
+      *{
+        background-color: var(--bg);
+        color: var(--fg);
+      }
+      a {
+        color: var(--link);
+      }
+      a.btn {
+        font-size: smaller;
+        font-weight: normal;
+        color: var(--fg);
+      }
+
+      a.btn::before {
+        content: "[";
+        color: var(--dim);
+      }
+
+      a.btn::after {
+        content: "]";
+        color: var(--dim);
+      }
+
       smaller {
         font-size:smaller
       } 
@@ -23,7 +60,7 @@
         font-family: monospace
       }
       p.tagline {
-        color: gray;
+        color: var(--dim);
         font-weight: bold;
         font-style: italic;
       }

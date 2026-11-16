@@ -8,19 +8,18 @@
   <body>
     <a href="..">&lt; Back</a>
 <header>
-  <h1>beamer</h1>
+  <h1>beamer <a class=btn href="https://github.com/benraz123/ltx/blob/main/beamer">source</a> <a class=btn href="./example.pdf">example</a></h1>
   <p class="tagline">
     Simple slideshow with beamer Singapore theme
   </p>
 </header>
-<a href="./example.pdf">Example PDF</a>
 <h2>Setup</h2>
 <pre>
   nix flake init -t github:BenRaz123/ltx#beamer
 </pre>
 <h2>Nix Flake Show</h2>
 <pre>
-<pre>git+file:///home/runner/work/ltx/ltx?dir=beamer&ref=refs/heads/main&rev=17201f754bebea0bbf7f70a67eaf549b3b698c4d&shallow=1
+<pre>git+file:///home/runner/work/ltx/ltx?dir=beamer&shallow=1
 ├───apps
 │   ├───aarch64-darwin
 │   │   └───watch: app: no description
@@ -47,6 +46,43 @@
 </script>
 
     <style>
+      :root {
+        --bg: white;
+        --fg: black;
+        --dim: gray;
+        --link: blue;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --fg: white;
+          --dim: #999;
+          --link: #abf;
+        }
+      }
+      *{
+        background-color: var(--bg);
+        color: var(--fg);
+      }
+      a {
+        color: var(--link);
+      }
+      a.btn {
+        font-size: smaller;
+        font-weight: normal;
+        color: var(--fg);
+      }
+
+      a.btn::before {
+        content: "[";
+        color: var(--dim);
+      }
+
+      a.btn::after {
+        content: "]";
+        color: var(--dim);
+      }
+
       smaller {
         font-size:smaller
       } 
@@ -57,7 +93,7 @@
         font-family: monospace
       }
       p.tagline {
-        color: gray;
+        color: var(--dim);
         font-weight: bold;
         font-style: italic;
       }
