@@ -2,14 +2,24 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
-    { nixpkgs, flake-utils, ... }:
+    {
+      nixpkgs,
+      flake-utils,
+      treefmt-nix,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs { inherit system; };
         inherit (nixpkgs) lib;
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
         tl = (
           pkgs.texlive.withPackages (
             ps: with ps; [
@@ -31,6 +41,8 @@
         );
       in
       {
+        formatter = treefmtEval.config.build.wrapper;
+
         packages.default = (
           pkgs.runCommand "build-slides"
             {
