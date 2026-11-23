@@ -19,7 +19,7 @@
 </pre>
 <h2>Nix Flake Show</h2>
 <pre>
-<pre>git+file:///home/runner/work/ltx/ltx?dir=beamer&ref=refs/heads/main&rev=7e4fc3cceb76b2529208391854d8d4c17e855f73&shallow=1
+<pre>git+file:///home/runner/work/ltx/ltx?dir=beamer&ref=refs/heads/main&rev=d8a02f74de0569d87aa6c3ae1246f87d87df002e&shallow=1
 ├───apps
 │   ├───aarch64-darwin
 │   │   └───watch: app: no description
@@ -34,6 +34,10 @@
 │   │   └───default: development environment 'nix-shell'
 │   └───x86_64-linux
 │       └───default: development environment 'nix-shell'
+├───formatter
+│   ├───aarch64-darwin: package 'treefmt'
+│   ├───aarch64-linux: package 'treefmt'
+│   └───x86_64-linux: package 'treefmt'
 └───packages
     ├───aarch64-darwin
     │   └───default: package 'build-slides'
@@ -42,7 +46,7 @@
     └───x86_64-linux
         └───default: package 'build-slides'</pre>
 <script>
-  const INFO_JSON = {"apps":{"aarch64-darwin":{"watch":{"type":"app"}},"aarch64-linux":{"watch":{"type":"app"}},"x86_64-linux":{"watch":{"type":"app"}}},"devShells":{"aarch64-darwin":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}}},"packages":{"aarch64-darwin":{"default":{"description":"","name":"build-slides","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}}}};
+  const INFO_JSON = {"apps":{"aarch64-darwin":{"watch":{"type":"app"}},"aarch64-linux":{"watch":{"type":"app"}},"x86_64-linux":{"watch":{"type":"app"}}},"devShells":{"aarch64-darwin":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"nix-shell","type":"derivation"}}},"formatter":{"aarch64-darwin":{"description":"One CLI to format the code tree","name":"treefmt","type":"derivation"},"aarch64-linux":{"description":"One CLI to format the code tree","name":"treefmt","type":"derivation"},"x86_64-linux":{"description":"One CLI to format the code tree","name":"treefmt","type":"derivation"}},"packages":{"aarch64-darwin":{"default":{"description":"","name":"build-slides","type":"derivation"}},"aarch64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}},"x86_64-linux":{"default":{"description":"","name":"build-slides","type":"derivation"}}}};
 </script>
 
     <style>
