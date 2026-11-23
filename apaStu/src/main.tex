@@ -10,12 +10,13 @@ Some example text. A reference \parencite{src1} as well as another
 \parencite{src2}.
 
 \ifdefined\DRAFT
-  This paper was build int \verb|\DRAFT| mode. That's why you saw the word DRAFT
-  on the front page.
+This paper was build int \verb|\DRAFT| mode. That's why you saw the word DRAFT
+on the front page.
 \else
-  This document was build in release mode. 
-\fi 
-In order to build in \verb|\DRAFT| mode, either use \verb|nix run .#watch| or use
+This document was build in release mode.
+\fi
+In order to build in \verb|\DRAFT| mode, either use \verb|nix run
+.#watch| or use
 \verb|nix build .#draft| or simply \verb|nix build|. To build a release, run
 \verb|nix build .#release|.
 

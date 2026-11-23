@@ -3,127 +3,127 @@
 \ExplSyntaxOn
 
 \keys_define:nn { tpage / args } {
-	title .tl_set:N = \l_tpage_title_tl,
-	title .value_required:n = true,
+  title .tl_set:N = \l_tpage_title_tl,
+  title .value_required:n = true,
 
-	author .tl_set:N = \l_tpage_author_tl,
-	author .value_required:n = true,
+  author .tl_set:N = \l_tpage_author_tl,
+  author .value_required:n = true,
 
-	orcid .tl_set:N = \l_tpage_orcid_tl,
-	orcid .value_required:n = true,
+  orcid .tl_set:N = \l_tpage_orcid_tl,
+  orcid .value_required:n = true,
 
-	due .tl_set:N = \l_tpage_due_tl,
-	due .value_required:n = true,
+  due .tl_set:N = \l_tpage_due_tl,
+  due .value_required:n = true,
 
-	affiliation .tl_set:N = \l_tpage_aff_tl,
-	affiliation .value_required:n = true,
+  affiliation .tl_set:N = \l_tpage_aff_tl,
+  affiliation .value_required:n = true,
 
-	course .tl_set:N = \l_tpage_course_tl,
-	course .value_required:n = true,
+  course .tl_set:N = \l_tpage_course_tl,
+  course .value_required:n = true,
 
-	professor .tl_set:N = \l_tpage_prof_tl,
-	professor .value_required:n = true,
+  professor .tl_set:N = \l_tpage_prof_tl,
+  professor .value_required:n = true,
 }
 
 \msg_new:nnn
-  { tpage }
-  { error / missingKey }
-  { Missing~Key:~#1 }
+{ tpage }
+{ error / missingKey }
+{ Missing~Key:~#1 }
 
 \msg_new:nnn
-  { tpage }
-  { error / invalidORCID }
-  { Invalid~ORCID:~#1~(Please~use~DDDD-DDDD-DDDD-DDDD~pattern) }
+{ tpage }
+{ error / invalidORCID }
+{ Invalid~ORCID:~#1~(Please~use~DDDD-DDDD-DDDD-DDDD~pattern) }
 
-\cs_new:Npn \__require:Nn #1#2 { 
-	\quark_if_no_value:NT #1 {
-		\msg_error:nnn { tpage } { error / missingKey } { #2 } 
-	}
+\cs_new:Npn \__require:Nn #1#2 {
+  \quark_if_no_value:NT #1 {
+    \msg_error:nnn { tpage } { error / missingKey } { #2 }
+  }
 }
 
 \cs_new:Npn \__set_default:Nn #1#2 {
-    \quark_if_no_value:NT #1
-      { \tl_set:Nn #1 {#2} }
+  \quark_if_no_value:NT #1
+  { \tl_set:Nn #1 {#2} }
 }
 
 \cs_new:Npn \__sz:N #1 {
-	\tl_clear_new:N #1
-	\tl_set:Nn #1 \q_no_value
+  \tl_clear_new:N #1
+  \tl_set:Nn #1 \q_no_value
 }
 
 \cs_new:Npn \__sz:n #1 {
-	\tl_map_function:nN { #1 } \__sz:N
+  \tl_map_function:nN { #1 } \__sz:N
 }
 
 \NewDocumentCommand{\TPage} { +m } {
 
-	\__sz:n { 
-		\l_tpage_title_tl
-		\l_tpage_author_tl
-		\l_tpage_orcid_tl
-		\l_tpage_due_tl 
-		\l_tpage_aff_tl
-		\l_tpage_course_tl
-		\l_tpage_prof_tl
-	}
+  \__sz:n {
+    \l_tpage_title_tl
+    \l_tpage_author_tl
+    \l_tpage_orcid_tl
+    \l_tpage_due_tl
+    \l_tpage_aff_tl
+    \l_tpage_course_tl
+    \l_tpage_prof_tl
+  }
 
-	\keys_set:nn { tpage / args } { #1 }
+  \keys_set:nn { tpage / args } { #1 }
 
-	\__require:Nn \l_tpage_title_tl { title }
-	\__require:Nn \l_tpage_author_tl { author }
-	\__require:Nn \l_tpage_aff_tl { affiliation }
-	\__require:Nn \l_tpage_course_tl { course }
-	\__require:Nn \l_tpage_prof_tl { professor }
+  \__require:Nn \l_tpage_title_tl { title }
+  \__require:Nn \l_tpage_author_tl { author }
+  \__require:Nn \l_tpage_aff_tl { affiliation }
+  \__require:Nn \l_tpage_course_tl { course }
+  \__require:Nn \l_tpage_prof_tl { professor }
 
-	\__set_default:Nn \l_tpage_due_tl { \today }
+  \__set_default:Nn \l_tpage_due_tl { \today }
 
-	\bool_set:Nn \l__has_orcid_bool { 
-		! \quark_if_no_value_p:N \l_tpage_orcid_tl
-	}
+  \bool_set:Nn \l__has_orcid_bool {
+    ! \quark_if_no_value_p:N \l_tpage_orcid_tl
+  }
 
-	\bool_if:NT \l__has_orcid_bool {
-		\regex_if_match:nVF
-      { \A\d{4}\-\d{4}\-\d{4}\-\d{4}\Z }
-      { \l_tpage_orcid_tl }
-      { \msg_error:nnV
-        { tpage }
-        { error / invalidORCID }
-        { \l_tpage_orcid_tl } }
-	}
+  \bool_if:NT \l__has_orcid_bool {
+    \regex_if_match:nVF
+    { \A\d{4}\-\d{4}\-\d{4}\-\d{4}\Z }
+    { \l_tpage_orcid_tl }
+    { \msg_error:nnV
+      { tpage }
+      { error / invalidORCID }
+    { \l_tpage_orcid_tl } }
+  }
 
-	\author {
-		\tl_use:N \l_tpage_author_tl
+  \author {
+    \tl_use:N \l_tpage_author_tl
 
-		\bool_if:NT \l__has_orcid_bool {
-			\,
-			\orcidlink {
-				\tl_use:N \l_tpage_orcid_tl
-			}
-		}
-	}
+    \bool_if:NT \l__has_orcid_bool {
+      \,
+      \orcidlink {
+        \tl_use:N \l_tpage_orcid_tl
+      }
+    }
+  }
 
-	\bool_if:NT \l__has_orcid_bool {
-		\authornote {
-			\addORCIDlink
-				{ \tl_use:N \l_tpage_author_tl }
-				{ \tl_use:N \l_tpage_orcid_tl } 
-		} 
-	}
+  \bool_if:NT \l__has_orcid_bool {
+    \authornote {
+      \addORCIDlink
+      { \tl_use:N \l_tpage_author_tl }
+      { \tl_use:N \l_tpage_orcid_tl }
+    }
+  }
 
-	\title 
-		{ \tl_use:N \l_tpage_title_tl }
-				
-	\affiliation 
-		{ \tl_use:N \l_tpage_aff_tl }
+  \title
+  { \tl_use:N \l_tpage_title_tl }
 
-	\course 
-		{ \tl_use:N \l_tpage_course_tl }
+  \affiliation
+  { \tl_use:N \l_tpage_aff_tl }
 
-	\duedate 
-		{ \tl_use:N \l_tpage_due_tl }
+  \course
+  { \tl_use:N \l_tpage_course_tl }
 
-	\professor 
-		{ \tl_use:N \l_tpage_prof_tl }
+  \duedate
+  { \tl_use:N \l_tpage_due_tl }
+
+  \professor
+  { \tl_use:N \l_tpage_prof_tl }
 }
 
 \ExplSyntaxOff
