@@ -31,7 +31,7 @@
         };
         apaStu = {
           path = ./apaStu;
-          description = "APA Student submission template with bibliography, optional author ORCID and TeX-Gyre fonts (Cursor, Hermes, and Heros)";
+          description = "APA Student submission template with bibliography, optional author ORCID and TeX-Gyre fonts (Cursor, Termes, and Heros)";
         };
       };
     };
