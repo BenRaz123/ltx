@@ -29,7 +29,7 @@
           path = ./beamer;
           description = "Simple slideshow with beamer Singapore theme";
         };
-        apaSTU = {
+        apaStu = {
           path = ./apaStu;
           description = "APA Student submission template with bibliography, optional author ORCID and TeX-Gyre fonts (Cursor, Hermes, and Heros)";
         };
