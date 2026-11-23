@@ -68,7 +68,6 @@
             biblatex-apa
           ]
         );
-
         mkRun =
           pretex:
           pkgs.runCommand "build-doc"
