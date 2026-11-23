@@ -1,0 +1,50 @@
+% vim: set spell tw=80 :
+
+\ifdefined\DRAFT
+\documentclass[
+  stu,
+  draftfirst
+]{apa7}
+\else
+\documentclass[stu]{apa7}
+\fi
+
+\usepackage{fontspec}
+
+\input{src/lib/tpage.tex}
+
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{TeX Gyre Cursor}
+
+\usepackage[style=apa]{biblatex}
+\addbibresource{src/bib.bib}
+
+\TPage{
+  title = {Example Paper},
+  author = {John Doe},
+  professor = {Jane Doe},
+  affiliation = {{Student, Random University }},
+  course = Poop 101,
+  % optional
+  orcid = {0009-0001-3556-9833}
+}
+
+\long\def\question#1{}
+
+\ifdefined\DRAFT
+\long\def\question#1{
+  \fbox{
+    \parbox{0.9\textwidth}{
+      \sffamily
+      \textbf{Question} {\em (Only visible in draft)}
+      \begin{quote}
+        \begin{quote}#1
+        \end{quote}
+      \end{quote}
+    }
+  }
+}
+\fi
+
+\def\latin#1{\it #1}
