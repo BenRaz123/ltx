@@ -5,7 +5,11 @@
   ...
 }:
 let
-  REPO_ROOT = "https://github.com/benraz123/ltx/blob/main";
+  REPO = "https://github.com/benraz123/ltx";
+  REPO_ROOT = "${REPO}/blob/main";
+  LATEX = ''<span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>'';
+  TEX = ''<span class="tex">T<sub>e</sub>X</span>'';
+
   HTML_BOILERPLATE = name: doc: /* html */ ''
     <html lang="en">
       <head>
@@ -17,6 +21,27 @@ let
       <body>
         ${doc}
         <style>
+          .tex sub, .latex sub, .latex sup {
+            text-transform: uppercase;
+          }
+
+          .tex sub, .latex sub {
+            vertical-align: -0.5ex;
+            margin-left: -0.1667em;
+            margin-right: -0.125em;
+          }
+
+          .tex, .latex, .tex sub, .latex sub {
+            font-size: 1em;
+          }
+
+          .latex sup {
+            font-size: 0.85em;
+            vertical-align: 0.15em;
+            margin-left: -0.36em;
+            margin-right: -0.15em;
+          }
+
           :root {
             --bg: white;
             --fg: black;
@@ -32,8 +57,10 @@ let
             }
           }
           *{
-            background-color: var(--bg);
             color: var(--fg);
+          }
+          html {
+            background-color: var(--bg);
           }
           a {
             color: var(--link);
@@ -42,6 +69,7 @@ let
             font-size: smaller;
             font-weight: normal;
             color: var(--fg);
+            text-decoration: none;
           }
 
           a.btn::before {
@@ -63,11 +91,17 @@ let
           pre,code {
             font-family: monospace
           }
-          p.tagline {
+          p.tagline, p.tagline * {
             color: var(--dim);
             font-weight: bold;
             font-style: italic;
           }
+
+          ul.templates {
+            font-size: bigger;
+            list-style-type: "> ";
+          }
+
         </style>
       </body>
     </html> 
@@ -85,10 +119,14 @@ pkgs.writeShellApplication {
 
     cat > "$out/index.html" <<EOF
       ${HTML_BOILERPLATE "latex templates" /* html */ ''
-        <h1>Latex Templates</h1>
-        <ul>
+        <h1>${LATEX} Templates <a class=btn href="${REPO}">source</a></h1>
+        <p class="tagline">
+          A set of nix flake templates to make typesetting documents with ${LATEX} easier and more conventient.
+        </p>
+        <ul class=templates>
         ${lib.concatMapAttrsStringSep "\n" (n: _: /* html */ ''
-          <li><a href="${n}">${n}</a> <a class=btn href="${n}/example.pdf">PDF</a></li>
+          <li>template <strong>${n}</strong> <a class=btn href="${n}">link</a></li>
+          <!--<a class=btn href="${n}">page</a> <a class=btn href="${REPO_ROOT}/${n}">source</a> <a class=btn href="{n}/example.pdf">example</a>-->
         '') self.templates}
         </ul>
       ''}
@@ -103,7 +141,7 @@ pkgs.writeShellApplication {
           <header>
             <h1>${n} <a class=btn href="${REPO_ROOT}/${n}">source</a> <a class=btn href="./example.pdf">example</a></h1>
             <p class="tagline">
-              ${description}
+              ${builtins.replaceStrings [ "TeX" "LaTeX" ] [ TEX LATEX ] description}
             </p>
           </header>
           <h2>Setup</h2>
